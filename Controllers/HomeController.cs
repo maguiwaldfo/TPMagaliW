@@ -1,5 +1,4 @@
-using System.Diagnostics;
-using tpfinal.Models;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace tpfinal.Controllers
@@ -8,7 +7,11 @@ namespace tpfinal.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetString("IdUsuario") == null)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            return RedirectToAction("Index", "Espacios");
         }
     }
 }
