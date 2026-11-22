@@ -9,4 +9,5 @@ public class Reserva
     public DateTime FechaCancelacion {get; set;}
     public bool cancelado {get; set;}
     public int CantidadHoras { get; set; }
+    public DateTime FechaHoraInicio { get; set; }
 }

@@ -1,0 +1,23 @@
+
+@model List<Espacio>
+
+@{
+    ViewData["Title"] = "Espacios";
+}
+
+<h1>Espacios disponibles</h1>
+
+<div id="contenedorEspacios">
+
+    @Html.Partial("TarjetasEspacios", Model)
+
+</div>
+
+<input type="hidden" id="ultimoId" value="@(Model.Count > 0 ? Model[Model.Count - 1].Id : 0)">
+
+@if (Model.Count == 8)
+{
+    <button id="botonVerMas">Ver más</button>
+}
+
+<script src="~/js/espacios.js"></script>

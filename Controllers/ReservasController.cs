@@ -30,22 +30,14 @@ namespace tpfinal.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Cancelar(int idReserva)
-        {
-            // Obtenemos el ID del usuario
-            int idUsuario = Convert.ToInt32(HttpContext.Session.GetString("IdUsuario"));
+        
+   [HttpPost]
+   public IActionResult Cancelar(int idReserva)
+    {
+    int idUsuario = Convert.ToInt32(HttpContext.Session.GetString("IdUsuario"));
+    bool resultado = bd.CancelarReserva(idReserva, idUsuario);
+    return Json(resultado);
+    }
 
-            // Intentamos cancelar la reserva
-            bool resultado = bd.CancelarReserva(idReserva, idUsuario);
-
-            // Si no se pudo cancelar, enviamos un mensaje
-            if (resultado == false)
-            {
-                TempData["Mensaje"] = "No se pudo cancelar la reserva. Debe pertenecer a tu usuario y faltar al menos 24 horas para que comience.";
-            }
-
-            return RedirectToAction("MisReservas");
-        }
     }
 }

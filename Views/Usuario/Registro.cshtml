@@ -1,0 +1,49 @@
+
+@{
+    ViewData["Title"] = "Crear cuenta";
+}
+
+<h1>Crear una cuenta</h1>
+
+<form action="@Url.Action("Registro", "Usuario")" method="post" onsubmit="return ValidarRegistro()">
+
+    <div>
+        <label>Nombre</label>
+        <input type="text" id="Nombre" name="Nombre" required>
+    </div>
+
+    <div>
+        <label>Apellido</label>
+        <input type="text" id="Apellido" name="Apellido" required>
+    </div>
+
+    <div>
+        <label>Nombre de usuario</label>
+        <input type="text" id="NombreUsuario" name="NombreUsuario" required>
+    </div>
+
+    <div>
+        <label>Contraseña</label>
+        <input type="password" id="Contrasena" name="Contrasena" required>
+    </div>
+
+    <div>
+        <label>Repetir contraseña</label>
+        <input type="password" id="RepetirContrasena" name="RepetirContrasena" required>
+    </div>
+
+    <button type="submit">Registrarme</button>
+
+</form>
+
+@if (ViewBag.Mensaje != null)
+{
+    <p>@ViewBag.Mensaje</p>
+}
+
+<p>¿Ya tenés una cuenta?</p>
+<a href="@Url.Action("Login", "Usuario")">Iniciar sesión</a>
+
+<script src="~/js/registro.js"></script>
+
+</script>

@@ -41,6 +41,27 @@ public class BD
         }
     }
 
+public bool FijarseSiExisteUsuario(string nombreUsuario)
+{
+    bool existe = false;
+
+    using (SqlConnection connection = ObtenerConexion())
+    {
+        int resultado = connection.QueryFirstOrDefault<int>(
+            "SELECT COUNT(*) FROM Usuarios WHERE NombreUsuario = @nombreUsuario",
+            new { nombreUsuario = nombreUsuario }
+        );
+
+        if (resultado > 0)
+        {
+            existe = true;
+        }
+    }
+
+    return existe;
+}
+
+
     public List<Espacio> ObtenerEspacios(int ultimoId)
     {
         List<Espacio> espacios;

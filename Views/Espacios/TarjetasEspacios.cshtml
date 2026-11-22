@@ -1,0 +1,21 @@
+
+@model List<Espacio>
+
+@foreach (Espacio espacio in Model)
+{
+    <div class="tarjeta-espacio">
+
+        <img src="@espacio.Imagen" alt="@espacio.Nombre">
+
+        <h2>@espacio.Nombre</h2>
+
+        <p>@espacio.Descripcion</p>
+
+        <p>Capacidad: @espacio.Capacidad personas</p>
+
+        <a href="@Url.Action("Detalle", "Espacios", new { id = espacio.Id })">
+            Ver detalle
+        </a>
+
+    </div>
+}

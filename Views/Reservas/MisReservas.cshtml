@@ -1,0 +1,53 @@
+
+@using tpfinal.Models
+
+@{
+    ViewData["Title"] = "Mis reservas";
+}
+
+<h1>Mis reservas</h1>
+
+<h2>Próximas reservas</h2>
+
+@if (ViewBag.ReservasProximas.Count == 0)
+{
+    <p>No tenés reservas próximas.</p>
+}
+else
+{
+    @foreach (Reserva reserva in ViewBag.ReservasProximas)
+    {
+    <div class="tarjeta-reserva" id="reserva-@reserva.Id">
+       <p>Espacio: @reserva.IdEspacio</p>
+       <p>Fecha y hora: @reserva.FechaHoraInicio</p>
+       <p>Duración: @reserva.CantidadHoras horas</p>
+       <button type="button" class="botonCancelar" data-id="@reserva.Id">
+        Cancelar reserva
+      </button>
+    </div>
+    }
+}
+
+<h2>Reservas pasadas</h2>
+
+@if (ViewBag.ReservasPasadas.Count == 0)
+{
+    <p>No tenés reservas pasadas.</p>
+}
+else
+{
+    @foreach (Reserva reserva in ViewBag.ReservasPasadas)
+    {
+        <div class="tarjeta-reserva">
+
+            <p>Espacio: @reserva.IdEspacio</p>
+
+            <p>Fecha y hora: @reserva.FechaHoraInicio</p>
+
+            <p>Duración: @reserva.CantidadHoras horas</p>
+
+        </div>
+    }
+}
+
+<script src="~/js/reservas.js"></script>

@@ -1,0 +1,63 @@
+
+@model Espacio
+
+@{
+    ViewData["Title"] = "Detalle del espacio";
+}
+
+<h1>@Model.Nombre</h1>
+
+<div class="detalle-espacio">
+
+    <img src="@Model.Imagen" alt="@Model.Nombre">
+
+    <p>@Model.Descripcion</p>
+
+    <p>Capacidad: @Model.Capacidad personas</p>
+
+    <form action="@Url.Action("Reservar", "Espacios")" method="post">
+
+        <input type="hidden" id="IdEspacio" name="IdEspacio" value="@Model.Id">
+
+        <div>
+            <label>Fecha de reserva</label>
+            <input type="date" name="Fecha" id="fechaReserva" required>
+        </div>
+
+        <div>
+            <label>Horario de inicio</label>
+            <input type="time" name="Hora" required>
+        </div>
+
+        <div>
+            <label>Duración</label>
+            <select name="CantidadHoras" required>
+                <option value="1">1 hora</option>
+                <option value="2">2 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas</option>
+            </select>
+        </div>
+
+        <button type="submit">Reservar</button>
+
+    </form>
+
+</div>
+
+@if (ViewBag.Mensaje != null)
+{
+    <p>@ViewBag.Mensaje</p>
+}
+
+<h2>Ocupación del día</h2>
+
+<label>Seleccioná una fecha para consultar:</label>
+
+<input type="date" id="fechaOcupacion">
+
+<div id="ocupacionDelDia">
+</div>
+
+<script src="~/js/detalle.js"></script>
+
