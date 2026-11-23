@@ -51,7 +51,13 @@ namespace tpfinal.Controllers
 [HttpPost]
 public IActionResult Reservar(int IdEspacio, string Fecha, string Hora, int CantidadHoras)
 {
-    int idUsuario = Convert.ToInt32(HttpContext.Session.GetString("IdUsuario"));
+    string idUsuarioSesion = HttpContext.Session.GetString("IdUsuario");
+    if (string.IsNullOrEmpty(idUsuarioSesion))
+    {
+        return RedirectToAction("Login", "Usuario");
+    }
+
+    int idUsuario = Convert.ToInt32(idUsuarioSesion);
 
     // Unimos la fecha y la hora
     DateTime fechaHoraInicio = DateTime.Parse(Fecha + "T" + Hora);
