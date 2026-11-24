@@ -7,6 +7,11 @@
 
 <h1>Espacios disponibles</h1>
 
+@if (Model.Count == 0)
+{
+    <p>No hay espacios disponibles en este momento.</p>
+}
+
 <div id="contenedorEspacios">
 
     @foreach (Espacio espacio in Model)
@@ -37,4 +42,4 @@
     <button id="botonVerMas">Ver más</button>
 }
 
-<script src="~/js/espacios.js"></script>
+<script src="~/js/site.js"></script>

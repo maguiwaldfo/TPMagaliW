@@ -3,7 +3,7 @@
 
 @foreach (Espacio espacio in Model)
 {
-    <div class="tarjeta-espacio">
+    <div class="tarjeta-espacio" data-id="@espacio.Id">
 
         <img src="@Url.Content("~/Imagenes/" + espacio.Imagen)" alt="@espacio.Nombre">
 
