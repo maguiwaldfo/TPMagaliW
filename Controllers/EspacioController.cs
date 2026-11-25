@@ -89,12 +89,20 @@ public IActionResult Reservar(int IdEspacio, string Fecha, string Hora, int Cant
         return View("Detalle", espacio);
     }
 
+    DateTime fechaFin = reserva.FechaHoraInicio.AddHours(reserva.CantidadHoras);
+    DateTime inicioHorario = reserva.FechaHoraInicio.Date.AddHours(8);
+    DateTime finHorario = reserva.FechaHoraInicio.Date.AddHours(20);
+
+    if (reserva.FechaHoraInicio < inicioHorario || fechaFin > finHorario)
+    {
+        ViewBag.Mensaje = "Las reservas deben realizarse entre las 8:00 y las 20:00.";
+        return View("Detalle", espacio);
+    }
+
     List<Reserva> reservasDelDia = bd.ObtenerReservasDelDia(
         reserva.IdEspacio,
         reserva.FechaHoraInicio
     );
-
-    DateTime fechaFin = reserva.FechaHoraInicio.AddHours(reserva.CantidadHoras);
 
     foreach (Reserva reservaExistente in reservasDelDia)
     {
